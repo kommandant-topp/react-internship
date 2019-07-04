@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+h3 {
+    color: #87bd24;
+    font-family: 'Noto Serif', sans-serif;
+    font-size: 3em;
+}
+
+label { display: block; }
+
+.top-block {
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.top-block .logo-text {
+    color: #068977;
+}
+
+.top-block .logo-text span {
+    font-weight: bold;
+}
+
+.top-block .main-menu {
+
+}
+
+.top-block .right-menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.top-block .main-menu ul, .top-block .right-menu ul {
+    margin: 0;
+    list-style-type: none;
+}
+
+.top-block .main-menu ul {
+    padding: 0 0 0 20px;
+}
+
+.top-block .main-menu ul li, .top-block .right-menu ul li{
+    display: inline;
+}
+
+.top-block .main-menu ul li {
+    padding: 0 15px 0 0;
+}
+
+.top-block .main-menu ul li a, .top-block .right-menu ul li a {
+    text-decoration: none;
+    color: #958f8e;
+}
+
+.top-block .main-menu ul li a:hover {
+    color: #636968;
+}
+
+.top-block .right-menu ul li {
+    margin: 0 10px 0 0;
+}
+
+.top-block .right-menu ul li:nth-child(2){
+    padding: 5px 10px;
+    background: #87bd24;
+    border-radius: 5px;
+}
+
+.top-block .right-menu ul li:nth-child(2) a{
+    color: white;
+}
+
+.main-block {
+    margin: 30px 0 0 0;
+}
+
+.main-block section {
+    display: flex;
+    justify-content: center;
+}
+
+.main-block .desc-area {
+    margin: 150px 0 0 0;
+    flex-basis: 60rem;
+}
+
+.main-block .desc-area p {
+    margin: 15px 0;
+    line-height: 1.6;
+    color: #344442;
+}
+
+.main-block section .main-area {
+    margin: 100px 0 0 0;
+    flex-basis: 60rem;
+}
+
+.main-block section .main-area p::selection {
+    background-color: #758f46;
+}
+
+.main-block section .main-area form {
+    margin: 20px;
+}
+
+.checkboxes, .radios, .text-elements, .upload-element, .submit-button, .select-element {
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid #adb3a3;
+    margin: 0 0 10px 0;
+}
+
+.checkboxes, .radios, .text-elements {
+    display: flex;
+}
+
+.checkboxes div, .radios div {
+    margin: 0 20px 0 0;
+}
+
+.select-element select {
+    width: 20rem;
+    height: 1.5rem;
+}
+
+.text-elements {
+    flex-direction: column;
+}
+
+.text-elements div {
+    margin: 0 0 15px 0;
+}
+
+.text-elements div input {
+    padding: 2px;
+    width: 45rem;
+    height: 1.5rem;
+    font-size: 0.9em;
+}
+
+.text-elements div textarea {
+    padding: 2px;
+    width: 45rem;
+    height: 10rem;
+    font-size: 0.9em;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.submit-button input {
+    border: none;
+    padding: 5px 10px;
+    background: #87bd24;
+    border-radius: 5px;
+    color: white;
+}
+
+#main-table{
+    border: 1px solid grey;
+    empty-cells: show;
+    width: 100%;
+}
+
+#main-table th, td {
+    padding: 10px 20px;
+}
+
+#main-table th {
+    background: #169080;
+}
+
+#main-table thead td {
+    text-align: center;
+}
+
+#main-table tfoot td {
+    text-align: center;
+}
+
+#main-table tr:nth-child(even) {
+    background: #ecf1e3;
+}
+
+#main-table tr:nth-child(odd) {
+    background: white;
+}
+
+#main-table td:nth-child(2n) {
+    background: #e7f3f2;
+}
+
+.bottom-block {
+    margin: 100px 0 0 0;
+    background: #344442;
+    height: 3rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.bottom-block a {
+    margin: 1rem 1rem 1rem 0;
+    color: #a7c7c7;
+    text-decoration: none;
+}
+
+.bottom-block a:hover {
+    color: #fff8d5;
+}

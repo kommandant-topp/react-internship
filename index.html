@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Базовая страница</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<header>
+
+    <div class="top-block">
+        <div class="logo-text">
+            <span>React</span>Internship
+        </div>
+        <div class="main-menu">
+            <ul>
+                <li><a href="#project-name">название</a></li>
+                <li><a href="#short-desc">краткое описание</a></li>
+                <li><a href="#working-area">рабочая область</a></li>
+                <li><a href="#footer-links">ссылки</a></li>
+            </ul>
+        </div>
+        <div class="right-menu">
+            <ul>
+                <li><a href="#">вход</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+    </div>
+
+</header>
+<main>
+    <div class="main-block">
+        <section>
+            <div class="name-area">
+                <a id="project-name"><h3>ReactInternship.Lesson2</h3></a>
+            </div>
+        </section>
+        <section>
+            <div class="desc-area">
+                <a id="short-desc"><h3>Краткое описание</h3></a>
+
+                <p>
+                    создать простой шаблон страницы для дальнейшей работы. Страница должна содержать хедер, футер, блок с коротким описанием проекта и элементы из раздела Обсуждаемый материал этого урока. На странице должны быть: имя и фамилия автора, ссылка на github аккаунт, ссылка на оригинал дизайна. Страница должна проходить валидацию на w3c.
+                </p>
+            </div>
+
+        </section>
+        <section>
+            <div class="main-area">
+                <a id="working-area"><h3>Рабочая область</h3></a>
+                <p>Элементы форм/таблица</p>
+                <form action="/" name="data" method="post" enctype="multipart/form-data">
+                    <div class="checkboxes">
+                        <div>
+                            <label for="checkbox-element1">checkbox label 1 </label>
+                            <input type="checkbox" name="some-checkbox" id="checkbox-element1">
+                        </div>
+
+                        <div>
+                            <label for="checkbox-element2">checkbox label 2</label>
+                            <input type="checkbox" name="some-checkbox" id="checkbox-element2">
+                        </div>
+                    </div>
+
+                    <div class="select-element">
+                        <label for="select-element">select label</label>
+                        <select name="some-select" id="select-element">
+                            <option value="1">Значение 1</option>
+                            <option value="2">Значение 2</option>
+                            <option value="3">Значение 3</option>
+                        </select>
+                    </div>
+
+                    <div class="radios">
+                        <div>
+                            <label for="radio-element1">radiobutton label 1</label>
+                            <input type="radio" name="some-checkbox" id="radio-element1">
+                        </div>
+
+                        <div>
+                            <label for="radio-element2">radiobutton label 2</label>
+                            <input type="radio" name="some-checkbox" id="radio-element2">
+                        </div>
+                    </div>
+
+                    <div class="text-elements">
+                        <div>
+                            <label for="text-element">text label</label>
+                            <input type="text" name="some-text" id="text-element">
+                        </div>
+
+                        <div>
+                            <label for="textarea-element">textarea label</label>
+                            <textarea id="textarea-element" name="some-textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="upload-element">
+                        <label for="upload-element">upload label</label>
+                        <input type="file" name="some-upload" id="upload-element">
+                    </div>
+
+                    <div class="submit-button">
+                        <input type="submit" name="submit-button" value="отправить">
+                    </div>
+                </form>
+
+                <table id="main-table">
+                    <thead>
+                    <tr>
+                        <td colspan="3">заголовок таблицы</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>название</th>
+                            <th>год</th>
+                            <th>серия</th>
+                        </tr>
+                    </tbody>
+                        <tr>
+                            <td>название 1</td>
+                            <td>2015</td>
+                            <td>серия 1</td>
+                        </tr>
+                        <tr>
+                            <td>название 2</td>
+                            <td>2019</td>
+                            <td>серия 2</td>
+                        </tr>
+                    <tfoot>
+                    <tr>
+                        <td colspan="3">подвал таблицы</td>
+                    </tr>
+
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+<footer>
+    <div class="bottom-block">
+        <a href="https://handprinter.org/pages/home" target="_blank" id="footer-links">оригинал-макет</a>
+        <a href="https://github.com/kommandant-topp/react-internship" target="_blank">Дуванов Алексей</a>
+    </div>
+</footer>
+
+</body>
+</html>
