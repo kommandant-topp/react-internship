@@ -106,98 +106,22 @@ label { display: block; }
     background-color: #758f46;
 }
 
-.main-block section .main-area form {
-    margin: 20px;
+ol.main-list {list-style: none; counter-reset: li; margin: 20px 0 0 25px}
+
+ol.main-list li::before {content: counter(li, decimal-leading-zero); color: #87bd24;
+    display: inline-block; width: 1em;
+    margin-left: -1em; margin-left: -1.5em;
+    margin-right: 0.5em; text-align: right; direction: rtl}
+
+ol.main-list li {
+    counter-increment: li;
+    line-height: 1.6em;
 }
 
-.checkboxes, .radios, .text-elements, .upload-element, .submit-button, .select-element {
-    padding: 5px;
-    border-radius: 2px;
-    border: 1px solid #adb3a3;
-    margin: 0 0 10px 0;
-}
-
-.checkboxes, .radios, .text-elements {
-    display: flex;
-}
-
-.checkboxes div, .radios div {
-    margin: 0 20px 0 0;
-}
-
-.select-element select {
-    width: 20rem;
-    height: 1.5rem;
-}
-
-.text-elements {
-    flex-direction: column;
-}
-
-.text-elements div {
-    margin: 0 0 15px 0;
-}
-
-.text-elements div input {
-    padding: 2px;
-    width: 45rem;
-    height: 1.5rem;
-    font-size: 0.9em;
-}
-
-.text-elements div textarea {
-    padding: 2px;
-    width: 45rem;
-    height: 10rem;
-    font-size: 0.9em;
-}
-
-.submit-button {
-    display: flex;
-    justify-content: flex-end;
-
-}
-
-.submit-button input {
-    border: none;
-    padding: 5px 10px;
-    background: #87bd24;
-    border-radius: 5px;
-    color: white;
-}
-
-#main-table{
-    border: 1px solid grey;
-    empty-cells: show;
+footer {
+    position: absolute;
+    bottom: 0;
     width: 100%;
-}
-
-#main-table th, td {
-    padding: 10px 20px;
-}
-
-#main-table th {
-    background: #169080;
-}
-
-#main-table thead td {
-    text-align: center;
-}
-
-#main-table tfoot td {
-    text-align: center;
-}
-
-#main-table tr:nth-child(even) {
-    background: #ecf1e3;
-}
-
-#main-table tr:nth-child(odd) {
-    background: white;
-}
-
-#main-table td:nth-child(2n) {
-    background: #e7f3f2;
 }
 
 .bottom-block {
