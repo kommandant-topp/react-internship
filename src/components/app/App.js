@@ -2,26 +2,62 @@ import React from 'react';
 import '../../assets/components/app/main.css';
 
 const App = () => {
+
+    let project_name_block = <div className="logo-text">
+        <span>React</span>Internship
+      </div>;
+
+  let left_top_menu_1 = 'название',
+      left_top_menu_2 = 'краткое описание',
+      left_top_menu_3 = 'рабочая область',
+      left_top_menu_4 = 'ссылки';
+
+  let left_top_menu_href_1 = 'project-name',
+      left_top_menu_href_2 = 'short-desc',
+      left_top_menu_href_3 = 'working-area',
+      left_top_menu_href_4 = 'footer-links';
+
+  let right_top_menu_1 = 'вход',
+      right_top_menu_2 = 'FAQ';
+
+  let right_top_menu_href_1 = 'login',
+    right_top_menu_href_2 = 'faq';
+
+  let lesson_name = 'ReactInternship.Lesson4';
+
+  let screen_cast_element_1 = 'Введение, компонентный подход',
+      screen_cast_element_2 = 'Настройка окружения, create-react-app',
+      screen_cast_element_3 = 'JSX - синтаксис для разметки в React.js',
+      screen_cast_element_4 = 'React-компонент, передача данных',
+      screen_cast_element_5 = 'Интерактивность, состояние компонентов',
+      screen_cast_element_6 = 'Virtual DOM - основной алгоритм React.js',
+      screen_cast_element_7 = 'Отображение массивов, смысл аттрибута key',
+      screen_cast_element_8 = 'Оформление компонентов, работа с CSS';
+
+  let footer_links_text_1 = 'оригинал-макет',
+      footer_links_text_2 = 'Дуванов Алексей';
+
+  let footer_links_href_1 = 'https://handprinter.org/pages/home',
+      footer_links_href_2 = 'https://github.com/kommandant-topp/react-internship';
+
   return(
       <div>
         <header>
 
           <div className="top-block">
-            <div className="logo-text">
-              <span>React</span>Internship
-            </div>
+              {project_name_block}
             <div className="main-menu">
               <ul>
-                <li><a href="#project-name">название</a></li>
-                <li><a href="#short-desc">краткое описание</a></li>
-                <li><a href="#working-area">рабочая область</a></li>
-                <li><a href="#footer-links">ссылки</a></li>
+                <li><a href={'#' + left_top_menu_href_1}>{left_top_menu_1}</a></li>
+                <li><a href={'#' + left_top_menu_href_2}>{left_top_menu_2}</a></li>
+                <li><a href={'#' + left_top_menu_href_3}>{left_top_menu_3}</a></li>
+                <li><a href={'#' + left_top_menu_href_4}>{left_top_menu_4}</a></li>
               </ul>
             </div>
             <div className="right-menu">
               <ul>
-                <li><a href="#login">вход</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><a href={'#' + right_top_menu_href_1}>{right_top_menu_1}</a></li>
+                <li><a href={'#' + right_top_menu_href_2}>{right_top_menu_2}</a></li>
               </ul>
             </div>
           </div>
@@ -31,7 +67,7 @@ const App = () => {
           <div className="main-block">
             <section>
               <div className="name-area">
-                <h3 id="project-name">ReactInternship.Lesson3</h3>
+                <h3 id="project-name">{lesson_name}</h3>
               </div>
             </section>
             <section>
@@ -49,14 +85,14 @@ const App = () => {
                 <h3 id="working-area">Рабочая область</h3>
                 <p>Выпуски скринкаста</p>
                 <ol className="main-list">
-                  <li>Введение, компонентный подход</li>
-                  <li>Настройка окружения, create-react-app</li>
-                  <li>JSX - синтаксис для разметки в React.js</li>
-                  <li>React-компонент, передача данных</li>
-                  <li>Интерактивность, состояние компонентов</li>
-                  <li>Virtual DOM - основной алгоритм React.js</li>
-                  <li>Отображение массивов, смысл аттрибута key</li>
-                  <li>Оформление компонентов, работа с CSS</li>
+                  <li>{screen_cast_element_1}</li>
+                  <li>{screen_cast_element_2}</li>
+                  <li>{screen_cast_element_3}</li>
+                  <li>{screen_cast_element_4}</li>
+                  <li>{screen_cast_element_5}</li>
+                  <li>{screen_cast_element_6}</li>
+                  <li>{screen_cast_element_7}</li>
+                  <li>{screen_cast_element_8}</li>
                 </ol>
               </div>
             </section>
@@ -64,8 +100,8 @@ const App = () => {
         </main>
         <footer>
           <div className="bottom-block">
-            <a href="https://handprinter.org/pages/home" target="_blank" rel="noopener noreferrer" >оригинал-макет</a>
-            <a href="https://github.com/kommandant-topp/react-internship" target="_blank" rel="noopener noreferrer" >Дуванов Алексей</a>
+            <a href={footer_links_href_1} target="_blank" rel="noopener noreferrer" >{footer_links_text_1}</a>
+            <a href={footer_links_href_2} target="_blank" rel="noopener noreferrer" >{footer_links_text_2}</a>
           </div>
         </footer>
       </div>
