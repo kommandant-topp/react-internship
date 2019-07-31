@@ -3,29 +3,29 @@ import '../../assets/components/app/main.css';
 
 const App = () => {
 
-    let project_name_block = <div className="logo-text">
+  const project_name_block = <div className="logo-text">
         <span>React</span>Internship
       </div>;
 
-  let left_top_menu_1 = 'название',
+  const left_top_menu_1 = 'название',
       left_top_menu_2 = 'краткое описание',
       left_top_menu_3 = 'рабочая область',
       left_top_menu_4 = 'ссылки';
 
-  let left_top_menu_href_1 = 'project-name',
+  const left_top_menu_href_1 = 'project-name',
       left_top_menu_href_2 = 'short-desc',
       left_top_menu_href_3 = 'working-area',
       left_top_menu_href_4 = 'footer-links';
 
-  let right_top_menu_1 = 'вход',
+  const right_top_menu_1 = 'вход',
       right_top_menu_2 = 'FAQ';
 
-  let right_top_menu_href_1 = 'login',
+  const right_top_menu_href_1 = 'login',
     right_top_menu_href_2 = 'faq';
 
-  let lesson_name = 'ReactInternship.Lesson4';
+  const lesson_name = 'ReactInternship.Lesson4';
 
-  let screen_cast_element_1 = 'Введение, компонентный подход',
+  const screen_cast_element_1 = 'Введение, компонентный подход',
       screen_cast_element_2 = 'Настройка окружения, create-react-app',
       screen_cast_element_3 = 'JSX - синтаксис для разметки в React.js',
       screen_cast_element_4 = 'React-компонент, передача данных',
@@ -34,10 +34,10 @@ const App = () => {
       screen_cast_element_7 = 'Отображение массивов, смысл аттрибута key',
       screen_cast_element_8 = 'Оформление компонентов, работа с CSS';
 
-  let footer_links_text_1 = 'оригинал-макет',
+  const footer_links_text_1 = 'оригинал-макет',
       footer_links_text_2 = 'Дуванов Алексей';
 
-  let footer_links_href_1 = 'https://handprinter.org/pages/home',
+  const footer_links_href_1 = 'https://handprinter.org/pages/home',
       footer_links_href_2 = 'https://github.com/kommandant-topp/react-internship';
 
   return(
