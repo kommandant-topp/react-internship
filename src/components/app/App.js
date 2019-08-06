@@ -164,7 +164,7 @@ export default class App extends Component{
 
     render(){
       return(
-          <div class="main-container">
+          <div className="main-container">
             <header>
 
               <div className="top-block">
