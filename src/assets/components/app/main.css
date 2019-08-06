@@ -17,6 +17,26 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    flex: 1 0 auto;
+    min-height: 5.3em;
+}
+
+main {
+    flex: 1 0 auto;
+    min-height: 52em;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
 h3 {
     color: #87bd24;
     font-family: 'Noto Serif', sans-serif;
@@ -99,7 +119,7 @@ label { display: block; }
 }
 
 .main-block .desc-area {
-    margin: 150px 0 0 0;
+    margin: 60px 0 0 0;
     flex-basis: 60rem;
 }
 
@@ -118,7 +138,7 @@ label { display: block; }
     background-color: #758f46;
 }
 
-ol.main-list {list-style: none; counter-reset: li; margin: 20px 0 0 25px}
+ol.main-list {list-style: none; counter-reset: li; margin: 20px 0 0 25px; cursor: pointer}
 
 ol.main-list li::before {content: counter(li, decimal-leading-zero); color: #87bd24;
     display: inline-block; width: 1em;
@@ -130,14 +150,25 @@ ol.main-list li {
     line-height: 1.6em;
 }
 
+.control-buttons {
+    margin: 15px 0px;
+}
+
+.control-buttons button {
+   padding: 5px 8px;
+   margin-right: 2px;
+    background: #87bd24;
+    color: white;
+    border-style: none;
+    border-radius: 5px;
+
+}
+
 footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+
 }
 
 .bottom-block {
-    margin: 100px 0 0 0;
     background: #344442;
     height: 3rem;
     display: flex;
