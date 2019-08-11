@@ -8,12 +8,32 @@ export default class App extends Component{
         this.ID = 0;
         this.menuID = 0;
 
+        this.createObjectCustomKey = (key, value) => {
+          let obj = {};
+          obj[key] = value;
+
+          return obj;
+        };
+
+        this.arrayToObject = array => {
+            return array.reduce( (obj, current) => {
+                let tobj = {};
+                tobj[current[0]] = current[1];
+
+                Object.assign(obj, tobj );
+
+                return obj;
+            }, {});
+        };
+
         this.createItem = (year, label) => {
-          return {
-              id: this.ID++,
-              year: year,
-              label: label
-          }
+           return this.createObjectCustomKey(
+               'entry' + this.ID++,
+               {
+                   year: year,
+                   label: label
+               }
+           );
         };
 
         this.addMenuElement = (title, href) => {
@@ -42,15 +62,15 @@ export default class App extends Component{
               this.addMenuElement('Дуванов Алексей', 'https://github.com/kommandant-topp/react-internship'),
           ],
 
-          bio: [
-            this.createItem(1999, 'ЦНТУ'),
-            this.createItem(2004, 'ИВЦ ЦНТУ'),
-            this.createItem(2005, 'YasenDesign'),
-            this.createItem(2006, 'KoreDesign'),
-            this.createItem(2007, 'WebHata'),
-            this.createItem(2013, 'freelance'),
-            this.createItem(2017, 'ROMAD LLC')
-          ],
+          bio: {
+              ...this.createItem(1999, 'ЦНТУ'),
+              ...this.createItem(2004, 'ИВЦ ЦНТУ'),
+              ...this.createItem(2005, 'YasenDesign'),
+              ...this.createItem(2006, 'KoreDesign'),
+              ...this.createItem(2007, 'WebHata'),
+              ...this.createItem(2013, 'freelance'),
+              ...this.createItem(2017, 'ROMAD LLC')
+          },
           sortDest: -1
         };
 
@@ -71,11 +91,15 @@ export default class App extends Component{
         });
 
         this.mainList = () => {
-            return this.state.bio.map(({id, year, label}) => {
-                return(
-                    <li key={id}>{year}&nbsp;{label}</li>
-                );
-            });
+            let list = [];
+
+            for (let key in this.state.bio){
+                list.push(<li key={key}>{this.state.bio[key].year}&nbsp;{this.state.bio[key].label}</li>);
+            }
+
+            return list.map( val => {
+               return val;
+            })
         };
 
         this.footerLinks = this.state.footerLinks.map(({id, title, href}) => {
@@ -87,33 +111,40 @@ export default class App extends Component{
         this.addListItem = () => {
             this.setState(({bio}) => {
               return {
-                bio: [
+                bio: {
                     ...bio,
-                    this.createItem(1988, 'Школа')
-                ]
+                    ...this.createItem(1988, 'Школа')
+                }
               }
             });
         };
 
         this.deleteListItem = () => {
             this.setState(({bio}) => {
-                let list = bio.slice();
+                let lastKey = '',
+                    list = {...bio};
+
+                for (let key in bio){
+                    lastKey = key;
+                }
+
+                delete list[lastKey];
 
                 return {
-                    bio: list.slice(0, list.length - 1)
+                    bio: list
                 }
             });
         };
 
         this.sortList = () => {
           this.setState(({bio, sortDest}) => {
-              let list = bio.slice();
+              let list = {...bio};
 
-              list = this.commonSortList(bio, sortDest);
-              //list = this.customSortList(bio, sortDest);
+              list = this.commonSortList(Object.entries(bio), sortDest);
+              //list = this.customSortList(Object.entries(bio), sortDest);
 
               return {
-                bio: list,
+                bio: this.arrayToObject(list),
                 sortDest: sortDest * -1
               }
           });
@@ -122,7 +153,7 @@ export default class App extends Component{
         this.commonSortList = (arr, dest) => {
             return arr.sort(
                 (a, b) => {
-                    return (a.year - b.year) * dest;
+                    return (a[1].year - b[1].year) * dest;
                 }
             );
         };
@@ -146,7 +177,7 @@ export default class App extends Component{
                     let k = mainIndex,
                         currentValue = arr[mainIndex];
 
-                    while (k >= delta && getDest(dest, arr[k-delta].year, currentValue.year))
+                    while (k >= delta && getDest(dest, arr[k-delta][1].year, currentValue[1].year))
                     {
                         arr[k] = arr[k-delta];
                         k -= delta;
