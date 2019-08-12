@@ -97,9 +97,7 @@ export default class App extends Component{
                 list.push(<li key={key}>{this.state.bio[key].year}&nbsp;{this.state.bio[key].label}</li>);
             }
 
-            return list.map( val => {
-               return val;
-            })
+            return list;
         };
 
         this.footerLinks = this.state.footerLinks.map(({id, title, href}) => {
