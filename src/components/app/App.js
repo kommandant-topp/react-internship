@@ -5,11 +5,42 @@ export default class App extends Component{
     constructor() {
         super();
 
-        this.ID = 0;
         this.menuID = 0;
 
-        this.starwarsApiBase = 'https://swapi.co/api';
-        this.starhipsEndpoint = '/starships/';
+        this.currentDraggedItem = null;
+        this.stopDraggedItem = null;
+
+        this.handleKeyPress = function(e) {
+            let num = 1 * e.key;
+
+            if (isNaN(num)
+                || this.state.loading
+                || this.state.error
+                || !this.state.mainData[num]
+            ){
+                return;
+            }
+
+            num = num !== 0
+                ? num - 1
+                : this.state.mainData.length - 1;
+
+
+            this.setState(({mainDataSelected}) => {
+                const list = [...mainDataSelected];
+
+                list[num] = list[num] === undefined
+                    ? true
+                    : !list[num];
+
+                return {
+                    mainDataSelected: list
+                }
+            });
+
+        };
+
+        this.handleKeyPress = this.handleKeyPress.bind(this);
 
         this.addMenuElement = (title, href) => {
           return {
@@ -35,6 +66,7 @@ export default class App extends Component{
           ],
 
           mainData: null,
+          mainDataSelected: [],
 
           footerLinks: [
               this.addMenuElement('оригинал-макет', 'https://handprinter.org/pages/home'),
@@ -72,7 +104,8 @@ export default class App extends Component{
             });
 
             let response = await fetch(
-                this.starwarsApiBase + this.starhipsEndpoint
+                process.env.REACT_APP_STARWARS_API_BASE
+                    + process.env.REACT_APP_STARSHIPS_ENDPOINT
             );
 
             let jsonData = await response.json();
@@ -81,6 +114,44 @@ export default class App extends Component{
                 loading: false,
                 mainData: jsonData.results
             });
+        };
+
+        this.onDragStart = (e, index) => {
+            this.currentDraggedItem = this.state.mainData[index];
+
+            e.dataTransfer.effectAllowed = "move";
+            e.dataTransfer.setData("text/html", e.target);
+        };
+
+        this.onDragOver = (e, index) => {
+            this.stopDraggedItem = this.state.mainData[index];
+
+            if (this.currentDraggedItem === this.stopDraggedItem){
+                return;
+            }
+
+            let list = this.state.mainData.filter(
+                item => item !== this.currentDraggedItem
+            );
+
+            list.splice(index, 0, this.currentDraggedItem);
+
+            this.setState({
+                mainData: list
+            });
+        };
+
+        this.onDragEnd = () => {
+            this.currentDraggedItem = null;
+            this.stopDraggedItem = null;
+        };
+
+        this.handleOnLoad = e => {
+            alert('image loaded');
+        };
+
+        this.handleOnError = e => {
+            alert('image loading error');
         }
 
     }
@@ -95,18 +166,39 @@ export default class App extends Component{
                     error: true
                 });
             });
+
+        document.addEventListener('keydown', this.handleKeyPress);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeyPress);
     }
 
     render(){
 
-      const { mainData, loading, error } = this.state;
+      const { mainData, mainDataSelected, loading, error } = this.state;
       const hasData = !loading && !error && mainData;
 
       const loadingContainer = loading ? <b>загрузка...</b> : null;
       const dataContainer = hasData
           ? <ol className="main-list" >
-              {mainData.map(item => {
-                  return (<li key={item.name.replace(/\s+/g, '').toLowerCase()}>{item.name} <i>{item.model}</i></li>);
+              {mainData.map( (item, index) => {
+
+                  let activeIndex = index;
+
+                  let activeClass = mainDataSelected[activeIndex]
+                    ? 'active'
+                    : '';
+
+                  return (<li
+                      className={activeClass}
+                      key={item.name.replace(/\s+/g, '').toLowerCase()}
+                      draggable
+                      onDragStart={e => this.onDragStart(e, index)}
+                      onDragOver={e => this.onDragOver(e, index)}
+                      onDragEnd={this.onDragEnd}
+                   >{item.name} <i>{item.model}</i>
+                  </li>);
               })}
             </ol>
           : null;
@@ -145,7 +237,7 @@ export default class App extends Component{
                     <h3 id="short-desc">Краткое описание</h3>
 
                     <p>
-                        основы js, область видимости, fetch
+                        ознакомиться с событиями в js и react
                     </p>
                   </div>
 
@@ -157,6 +249,18 @@ export default class App extends Component{
                       {loadingContainer}
                       {dataContainer}
                       {errorContainer}
+
+                      <div className="info">
+                          нажатие 1-9 меняет статус пунктов 1-9, нажатие 0 меняет статус пункта 10
+                      </div>
+                      <div>
+                          <img
+                              alt="catz!"
+                              src={process.env.REACT_APP_IMAGE_FOR_EVENTS}
+                              onLoad={this.handleOnLoad}
+                              onError={this.handleOnError} />
+                      </div>
+
                   </div>
                 </section>
               </div>

@@ -148,6 +148,19 @@ ol.main-list li::before {content: counter(li, decimal-leading-zero); color: #87b
 ol.main-list li {
     counter-increment: li;
     line-height: 1.6em;
+    cursos: move;
+}
+
+ol.main-list li.active {
+    color:red;
+}
+
+.main-block .main-area .info {
+    padding: 30px 20px;
+}
+
+.main-block .main-area img {
+    padding-top: 30px;
 }
 
 .control-buttons {
