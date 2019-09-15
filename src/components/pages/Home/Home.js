@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 
-import Loader from '../loader/loader';
-import ErrorContainer from '../error-container/error-container';
-import MainList from '../main-list/main-list';
+import HomeView from './HomeView';
 
-export default class Main extends Component{
+export default class Home extends Component{
     constructor() {
         super();
 
@@ -129,54 +127,18 @@ export default class Main extends Component{
     render(){
         const { mainData, mainDataSelected, loading, error } = this.state;
 
-        const dataContainer = (!loading && !error && mainData)
-            ? <MainList mainData={mainData} mainDataSelected={mainDataSelected} onDragStart={this.onDragStart} onDragOver={this.onDragOver} onDragEnd={this.onDragEnd} />
-            : null;
-        const loadingContainer = loading ? <Loader /> : null;
-        const errorContainer = error ? <ErrorContainer /> : null;
-
         return(
-            <main>
-                <div className="main-block">
-                    <section>
-                        <div className="name-area">
-                            <h3 id="project-name">ReactInternship.Lesson9</h3>
-                        </div>
-                    </section>
-                    <section>
-                        <div className="desc-area">
-                            <h3 id="short-desc">Краткое описание</h3>
-
-                            <p>
-                                ознакомиться с компонентами в React, ознакомиться с чистыми функциями и необходимостью их применения
-                            </p>
-                        </div>
-
-                    </section>
-                    <section>
-                        <div className="main-area">
-                            <h3 id="working-area">Рабочая область</h3>
-                            <p>корабли</p>
-                            {loadingContainer}
-                            {dataContainer}
-                            {errorContainer}
-
-                            <div className="info">
-                                нажатие 1-9 меняет статус пунктов 1-9, нажатие 0 меняет статус пункта 10
-                            </div>
-                            <div>
-                                <img
-                                    alt="catz!"
-                                    src={process.env.REACT_APP_IMAGE_FOR_EVENTS}
-                                    onLoad={this.handleOnLoad}
-                                    onError={this.handleOnError}
-                                 />
-                            </div>
-
-                        </div>
-                    </section>
-                </div>
-            </main>
+            <HomeView
+                mainData={mainData}
+                mainDataSelected={mainDataSelected}
+                loading={loading}
+                error={error}
+                onDragStart={this.onDragStart}
+                onDragOver={this.onDragOver}
+                onDragEnd={this.onDragEnd}
+                handleOnLoad={this.handleOnLoad}
+                handleOnError={this.handleOnError}
+            />
         );
-    }
-}
+    };
+};

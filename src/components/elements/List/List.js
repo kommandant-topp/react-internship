@@ -1,24 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FooterMenu = (props) => {
+const List = (props) => {
     const {list} = props;
 
     const items = list.map( ({id, title, href}) => {
         return (
-            <a href={'#' + href} target="_blank" rel="noopener noreferrer" key={id}>{title}</a>
+            <li key={id}>
+                <a href={'#' + href}>{title}</a>
+            </li>
         );
     });
 
     return (
-        <div className="bottom-block">
+        <ul>
             {items}
-        </div>
+        </ul>
     );
 };
 
-FooterMenu.propTypes = {
+List.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-export default FooterMenu;
+export default List;

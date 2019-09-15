@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MainList = (props) => {
+const List = (props) => {
     const {mainData, mainDataSelected,
         onDragStart, onDragOver, onDragEnd} = props;
 
@@ -29,7 +29,7 @@ const MainList = (props) => {
     );
 };
 
-MainList.propTypes = {
+List.propTypes = {
     onDragStart: PropTypes.func,
     onDragOver: PropTypes.func,
     onDragEnd: PropTypes.func,
@@ -37,4 +37,4 @@ MainList.propTypes = {
     mainDataSelected: PropTypes.array
 };
 
-export default MainList;
+export default List;
