@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 import HomeView from './HomeView';
 
 export default class Home extends Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.currentDraggedItem = null;
         this.stopDraggedItem = null;
@@ -97,11 +97,11 @@ export default class Home extends Component{
             this.stopDraggedItem = null;
         };
 
-        this.handleOnLoad = e => {
+        this.handleOnLoad = () => {
             alert('image loaded');
         };
 
-        this.handleOnError = e => {
+        this.handleOnError =() => {
             alert('image loading error');
         }
     }

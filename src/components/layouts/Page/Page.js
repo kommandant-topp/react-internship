@@ -3,8 +3,8 @@ import PageView from './PageView';
 
 export default class Page extends Component{
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.menuID = 0;
 

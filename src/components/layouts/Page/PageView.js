@@ -6,9 +6,9 @@ import List from '../../elements/List/List';
 const PageView = (props) => {
     const {leftTopMenu, rightTopMenu, footerLinks, contentData} = props;
 
-    const footerItems = footerLinks.map( ({id, title, href}) => {
+    const footerItems = footerLinks.map( ({title, href}) => {
         return (
-            <a href={'#' + href} target="_blank" rel="noopener noreferrer" key={id}>{title}</a>
+            <a href={'#' + href} target="_blank" rel="noopener noreferrer">{title}</a>
         );
     });
 

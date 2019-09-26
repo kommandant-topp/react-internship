@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Switch, Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Page from './components/layouts/Page/Page';
