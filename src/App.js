@@ -7,25 +7,22 @@ import Home from './components/pages/Home/Home';
 
 import './scss/layout/page.scss';
 
-export default class App extends Component{
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.mainRef = React.createRef();
+    this.history = createBrowserHistory();
+  }
 
-    constructor(props) {
-        super(props);
-        this.mainRef = React.createRef();
-        this.history = createBrowserHistory();
-    }
-
-    render() {
-        return (
-            <Router history={this.history}>
-                <Page mainRef={this.mainRef}>
-                    <Switch>
-                        <Route exact strict path="/" render={() => <Home mainRef={this.mainRef} />} />
-                    </Switch>
-                </Page>
-            </Router>
-        );
-    }
-};
-
-
+  render() {
+    return (
+      <Router history={this.history}>
+        <Page mainRef={this.mainRef}>
+          <Switch>
+            <Route exact strict path="/" render={() => <Home mainRef={this.mainRef} />} />
+          </Switch>
+        </Page>
+      </Router>
+    );
+  }
+}
