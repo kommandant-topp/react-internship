@@ -46,6 +46,7 @@ export default class Home extends Component{
             error: false,
             mainData: null,
             mainDataSelected: [],
+            showScrollButton: false
         };
 
         this.getStarshipList = async () => {
@@ -103,7 +104,29 @@ export default class Home extends Component{
 
         this.handleOnError =() => {
             alert('image loading error');
+        };
+
+        this.showScrollButton = (show) => {
+
+            if (this.state.showScrollButton === show){
+                return;
+            }
+
+            this.setState({
+                showScrollButton: show
+            });
+        };
+
+        this.handleScroll = () => {
+            let show = window.innerHeight < (this.props.mainRef.current.offsetTop - window.pageYOffset);
+            this.showScrollButton(show);
+        };
+
+        this.scrollToDown = () => {
+            window.scrollBy(0, document.documentElement.scrollHeight);
+            //setTimeout(this.scrollToDown, 0);
         }
+
     }
 
     componentDidMount(){
@@ -118,14 +141,27 @@ export default class Home extends Component{
             });
 
         document.addEventListener('keydown', this.handleKeyPress);
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState){
+        let show = window.innerHeight < (this.props.mainRef.current.offsetTop - window.pageYOffset);
+        return show;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (snapshot){
+            this.showScrollButton(snapshot);
+        }
     }
 
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handleKeyPress);
+        window.addEventListener('scroll', this.handleScroll);
     }
 
     render(){
-        const { mainData, mainDataSelected, loading, error } = this.state;
+        const { mainData, mainDataSelected, loading, error, showScrollButton } = this.state;
 
         return(
             <HomeView
@@ -138,6 +174,9 @@ export default class Home extends Component{
                 onDragEnd={this.onDragEnd}
                 handleOnLoad={this.handleOnLoad}
                 handleOnError={this.handleOnError}
+                handleScroll={this.handleScroll}
+                showScrollButton={showScrollButton}
+                scrollToDown={this.scrollToDown}
             />
         );
     };

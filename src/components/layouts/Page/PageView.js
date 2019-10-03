@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 import List from '../../elements/List/List';
 
 const PageView = (props) => {
-    const {leftTopMenu, rightTopMenu, footerLinks, contentData} = props;
+    const {leftTopMenu, rightTopMenu, footerLinks, contentData, mainRef} = props;
 
-    const footerItems = footerLinks.map( ({title, href}) => {
+    const footerItems = footerLinks.map( ({id, title, href}) => {
         return (
-            <a href={'#' + href} target="_blank" rel="noopener noreferrer">{title}</a>
+            <a href={'#' + href} target="_blank" rel="noopener noreferrer" key={id}>{title}</a>
         );
     });
 
     return (
-        <div className="main-container">
+        <div className="main-container" >
             <header>
                 <div className="top-block">
                     <div className="logo-text">
@@ -32,7 +32,7 @@ const PageView = (props) => {
                 {contentData}
             </main>
 
-            <footer>
+            <footer ref={mainRef}>
                 <div className="bottom-block">
                     <div className="bottom-block">
                         {footerItems}

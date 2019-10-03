@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import Loader from '../../elements/Loader/Loader';
 import Error from '../../elements/Error/Error';
 import List from './components/List';
+import Button from './components/Button';
 
 const HomeView = (props) => {
     const { mainData, mainDataSelected,
         loading, error,
         onDragStart, onDragOver, onDragEnd,
-        handleOnLoad, handleOnError
+        handleOnLoad, handleOnError, showScrollButton,
+        scrollToDown
     } = props;
 
     const dataContainer = (!loading && !error && mainData)
@@ -23,9 +25,11 @@ const HomeView = (props) => {
 
     const loadingContainer = loading ? <Loader /> : null;
     const errorContainer = error ? <Error /> : null;
+    const isButton = showScrollButton ? <Button scrollToDown={scrollToDown} /> : null;
 
     return (
         <div className="main-block">
+            {isButton}
             <section>
                 <div className="name-area">
                     <h3 id="project-name">ReactInternship.Lesson10</h3>
@@ -36,7 +40,7 @@ const HomeView = (props) => {
                     <h3 id="short-desc">Краткое описание</h3>
 
                     <p>
-                        структура приложения
+                        Husky and scroll event
                     </p>
                 </div>
 

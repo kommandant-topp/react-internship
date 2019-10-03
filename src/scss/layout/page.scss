@@ -20,7 +20,12 @@
 .main-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+}
+
+.scroll {
+    height: 100px;
+    overflow-y: scroll;
+    border: 1px solid crimson;
 }
 
 header {
@@ -136,6 +141,19 @@ label { display: block; }
 
 .main-block section .main-area p::selection {
     background-color: #758f46;
+}
+
+.go-footer-button {
+    position: fixed;
+    left: 20px;
+    top: 60px;
+
+    padding: 5px 8px;
+    margin-right: 2px;
+    background: #87bd24;
+    color: white;
+    border-style: none;
+    border-radius: 5px;
 }
 
 ol.main-list {list-style: none; counter-reset: li; margin: 20px 0 0 25px; cursor: pointer}

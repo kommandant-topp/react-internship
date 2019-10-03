@@ -5,7 +5,6 @@ export default class Page extends Component{
 
     constructor(props) {
         super(props);
-
         this.menuID = 0;
 
         this.addMenuElement = (title, href) => {
@@ -34,12 +33,13 @@ export default class Page extends Component{
                 this.addMenuElement('Дуванов Алексей', 'https://github.com/kommandant-topp/react-internship'),
             ],
         };
+
     }
 
     render(){
 
         const {leftTopMenu, rightTopMenu, footerLinks} = this.state;
-        const {children: contentData} = this.props;
+        const {children: contentData, mainRef} = this.props;
 
         return(
             <PageView
@@ -47,6 +47,7 @@ export default class Page extends Component{
                 rightTopMenu={rightTopMenu}
                 footerLinks={footerLinks}
                 contentData={contentData}
+                mainRef={mainRef}
             />
         );
     }

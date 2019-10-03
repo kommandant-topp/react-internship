@@ -11,15 +11,16 @@ export default class App extends Component{
 
     constructor(props) {
         super(props);
+        this.mainRef = React.createRef();
         this.history = createBrowserHistory();
     }
 
     render() {
         return (
             <Router history={this.history}>
-                <Page>
+                <Page mainRef={this.mainRef}>
                     <Switch>
-                        <Route exact strict path="/" component={Home} />
+                        <Route exact strict path="/" render={() => <Home mainRef={this.mainRef} />} />
                     </Switch>
                 </Page>
             </Router>
