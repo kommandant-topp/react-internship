@@ -43,7 +43,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint . --max-warnings=0 --fix",
+      "pre-commit": "eslint . --max-warnings=0",
       "pre-push": "eslint . --max-warnings=0"
     }
   }
