@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import withListData from '../../hoc/withListData';
 import HomeView from './HomeView';
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loading: false,
+      error: false,
+      mainData: null,
+      mainDataSelected: [],
+      showScrollButton: false
+    };
 
     this.currentDraggedItem = null;
     this.stopDraggedItem = null;
@@ -42,32 +51,6 @@ export default class Home extends Component {
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
 
-    this.state = {
-      loading: false,
-      error: false,
-      mainData: null,
-      mainDataSelected: [],
-      showScrollButton: false
-    };
-
-    this.getStarshipList = async () => {
-      this.setState({
-        loading: true
-      });
-
-      const response = await fetch(
-        process.env.REACT_APP_STARWARS_API_BASE
-                + process.env.REACT_APP_STARSHIPS_ENDPOINT
-      );
-
-      const jsonData = await response.json();
-
-      this.setState({
-        loading: false,
-        mainData: jsonData.results
-      });
-    };
-
     this.onDragStart = (e, index) => {
       const { mainData } = this.state;
 
@@ -79,7 +62,7 @@ export default class Home extends Component {
 
     this.onDragOver = (e, index) => {
       const { mainData } = this.state;
-      
+
       this.stopDraggedItem = mainData[index];
 
       if (this.currentDraggedItem === this.stopDraggedItem) {
@@ -132,17 +115,21 @@ export default class Home extends Component {
     this.scrollToDown = () => {
       window.scrollBy(0, document.documentElement.scrollHeight);
     };
+
+    this.updateStateMainData = (prevLoading) => {
+      const { loading, error, mainData } = this.props;
+
+      if (prevLoading !== loading) {
+        this.setState({
+          loading,
+          error,
+          mainData
+        });
+      }
+    };
   }
 
   componentDidMount() {
-    this.getStarshipList()
-      .catch(() => {
-        this.setState({
-          loading: false,
-          error: true
-        });
-      });
-
     document.addEventListener('keydown', this.handleKeyPress);
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -155,6 +142,9 @@ export default class Home extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    const { loading } = prevProps;
+    this.updateStateMainData(loading);
+
     if (snapshot) {
       this.showScrollButton(snapshot);
     }
@@ -167,7 +157,7 @@ export default class Home extends Component {
 
   render() {
     const {
-      mainData, mainDataSelected, loading, error, showScrollButton 
+      mainData, mainDataSelected, loading, error, showScrollButton
     } = this.state;
 
     return (
@@ -190,9 +180,17 @@ export default class Home extends Component {
 }
 
 Home.propTypes = {
-  mainRef: PropTypes.objectOf(PropTypes.object)
+  mainRef: PropTypes.objectOf(PropTypes.object),
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
+  mainData: PropTypes.arrayOf(PropTypes.object)
 };
 
 Home.defaultProps = {
-  mainRef: null
+  mainRef: null,
+  loading: false,
+  error: false,
+  mainData: null,
 };
+
+export default withListData(Home, process.env.REACT_APP_STARSHIPS_ENDPOINT);
