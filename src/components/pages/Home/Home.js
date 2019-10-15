@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withListData from '../../hoc/withListData';
+import withListData from '../../../hoc/withListData';
 import HomeView from './HomeView';
 
 class Home extends Component {

@@ -17,6 +17,16 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
+.light {
+    background: white;
+    color: #222;
+}
+
+.dark {
+    background: black;
+    color: #ccc;
+}
+
 .main-container {
     display: flex;
     flex-direction: column;
@@ -49,6 +59,13 @@ h3 {
 }
 
 label { display: block; }
+
+button {
+    padding: 5px 8px;
+    margin-right: 2px;
+    border-style: none;
+    border-radius: 5px;
+}
 
 .top-block {
     padding: 25px 20px;
@@ -106,12 +123,18 @@ label { display: block; }
 
 .top-block .right-menu ul li:nth-child(2){
     padding: 5px 10px;
-    background: #87bd24;
     border-radius: 5px;
+    background: #87bd24;
 }
 
-.top-block .right-menu ul li:nth-child(2) a{
+.top-block .right-menu ul li:nth-child(2) a.light{
+    background: inherit;
     color: white;
+}
+
+.top-block .right-menu ul li:nth-child(2) a.dark{
+    background: inherit;
+    color: black;
 }
 
 .main-block {
@@ -145,15 +168,34 @@ label { display: block; }
 
 .go-footer-button {
     position: fixed;
+    left: 140px;
+    top: 60px;
+
+    background: #87bd24;
+}
+
+.go-footer-button.light {
+    color: white;
+}
+
+.go-footer-button.dark {
+    color: black;
+}
+
+.toggle-theme{
+    position: fixed;
     left: 20px;
     top: 60px;
 
-    padding: 5px 8px;
-    margin-right: 2px;
     background: #87bd24;
+}
+
+.toggle-theme.light {
     color: white;
-    border-style: none;
-    border-radius: 5px;
+}
+
+.toggle-theme.dark {
+    color: black;
 }
 
 ol.main-list {list-style: none; counter-reset: li; margin: 20px 0 0 25px; cursor: pointer}
@@ -181,23 +223,6 @@ ol.main-list li.active {
     padding-top: 30px;
 }
 
-.control-buttons {
-    margin: 15px 0px;
-}
-
-.control-buttons button {
-   padding: 5px 8px;
-   margin-right: 2px;
-    background: #87bd24;
-    color: white;
-    border-style: none;
-    border-radius: 5px;
-
-}
-
-footer {
-
-}
 
 .bottom-block {
     background: #344442;

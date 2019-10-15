@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ThemeContext } from '../../../context/theme-context';
+
 const List = (props) => {
   const { list } = props;
 
   const items = list.map(({ id, title, href }) => {
     return (
-      <li key={id}>
-        <a href={`#${href}`}>{title}</a>
-      </li>
+      <ThemeContext.Consumer>
+        {({ theme }) => (
+          <li key={id}>
+            <a className={theme} href={`#${href}`}>{title}</a>
+          </li>
+        )}
+      </ThemeContext.Consumer>
     );
   });
 
