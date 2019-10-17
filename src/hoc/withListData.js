@@ -43,26 +43,17 @@ const withListData = (Container, endpoint) => {
 
     render() {
       const { mainData, loading, error } = this.state;
-      const { mainRef } = this.props;
 
       return (
         <Container
           mainData={mainData}
           loading={loading}
           error={error}
-          mainRef={mainRef}
+          {...this.props}
         />
       );
     }
   }
-
-  Wrapped.propTypes = {
-    mainRef: PropTypes.objectOf(PropTypes.object)
-  };
-
-  Wrapped.defaultProps = {
-    mainRef: null
-  };
 
   return Wrapped;
 };
