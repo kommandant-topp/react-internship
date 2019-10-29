@@ -6,22 +6,22 @@ import { ThemeContext } from '../../../context/theme-context';
 const List = (props) => {
   const { list } = props;
 
-  const items = list.map(({ id, title, href }) => {
+  const items = (theme) => list.map(({ id, title, href }) => {
     return (
-      <ThemeContext.Consumer>
-        {({ theme }) => (
-          <li key={id}>
-            <a className={theme} href={`#${href}`}>{title}</a>
-          </li>
-        )}
-      </ThemeContext.Consumer>
+      <li key={id}>
+        <a className={theme} href={`#${href}`}>{title}</a>
+      </li>
     );
   });
 
   return (
-    <ul>
-      {items}
-    </ul>
+    <ThemeContext.Consumer>
+      {({ theme }) => (
+        <ul>
+          {items(theme)}
+        </ul>
+      )}
+    </ThemeContext.Consumer>
   );
 };
 

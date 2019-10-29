@@ -1,59 +1,45 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const withListData = (Container, endpoint) => {
-  class Wrapped extends Component {
-    constructor(props) {
-      super(props);
+  const Wrapped = (props) => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [mainData, setMainData] = useState(null);
 
-      this.state = {
-        loading: false,
-        error: false,
-        mainData: null,
-      };
+    // console.log(loading);
 
-      this.getDataList = async () => {
-        this.setState({
-          loading: true
-        });
+    const getDataList = async () => {
+      setLoading(true);
 
-        const response = await fetch(
-          process.env.REACT_APP_STARWARS_API_BASE
-                    + endpoint
-        );
-
-        const jsonData = await response.json();
-
-        this.setState({
-          loading: false,
-          mainData: jsonData.results
-        });
-      };
-    }
-
-    componentDidMount() {
-      this.getDataList()
-        .catch(() => {
-          this.setState({
-            loading: false,
-            error: true
-          });
-        });
-    }
-
-    render() {
-      const { mainData, loading, error } = this.state;
-
-      return (
-        <Container
-          mainData={mainData}
-          loading={loading}
-          error={error}
-          {...this.props}
-        />
+      const response = await fetch(
+        process.env.REACT_APP_STARWARS_API_BASE + endpoint
       );
-    }
-  }
+
+      const jsonData = await response.json();
+
+      setMainData(jsonData.results);
+      setLoading(false);
+    };
+
+    useEffect(() => {
+      getDataList()
+        .catch(() => {
+          setLoading(false);
+          setError(true);
+        });
+    }, []);
+
+
+    return (
+      <Container
+        mainData={mainData}
+        loading={loading}
+        error={error}
+        {...props}
+      />
+    );
+  };
 
   return Wrapped;
 };

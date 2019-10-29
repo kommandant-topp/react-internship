@@ -1,58 +1,50 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import PageView from './PageView';
 
-export default class Page extends Component {
-  constructor(props) {
-    super(props);
-    this.menuID = 0;
+const Page = (props) => {
+  let menuID = 0;
 
-    this.addMenuElement = (title, href) => {
-      this.menuID = this.menuID + 1;
+  const addMenuElement = (title, href) => {
+    menuID += 1;
 
-      return {
-        id: this.menuID,
-        title,
-        href
-      };
+    return {
+      id: menuID,
+      title,
+      href
     };
+  };
 
-    this.state = {
-      leftTopMenu: [
-        this.addMenuElement('название', 'project-name'),
-        this.addMenuElement('краткое описание', 'short-desc'),
-        this.addMenuElement('рабочая область', 'working-area'),
-        this.addMenuElement('ссылки', 'footer-links'),
-      ],
+  const leftTopMenu = [
+    addMenuElement('название', 'project-name'),
+    addMenuElement('краткое описание', 'short-desc'),
+    addMenuElement('рабочая область', 'working-area'),
+    addMenuElement('ссылки', 'footer-links'),
+  ];
 
-      rightTopMenu: [
-        this.addMenuElement('вход', 'login'),
-        this.addMenuElement('FAQ', 'faq'),
-      ],
+  const rightTopMenu = [
+    addMenuElement('вход', 'login'),
+    addMenuElement('FAQ', 'faq'),
+  ];
 
-      footerLinks: [
-        this.addMenuElement('оригинал-макет', 'https://handprinter.org/pages/home'),
-        this.addMenuElement('Дуванов Алексей', 'https://github.com/kommandant-topp/react-internship'),
-      ],
-    };
-  }
+  const footerLinks = [
+    addMenuElement('оригинал-макет', 'https://handprinter.org/pages/home'),
+    addMenuElement('Дуванов Алексей', 'https://github.com/kommandant-topp/react-internship'),
+  ];
 
-  render() {
-    const { leftTopMenu, rightTopMenu, footerLinks } = this.state;
-    const { children: contentData, mainRef } = this.props;
+  const { children: contentData, mainRef } = props;
 
-    return (
-      <PageView
-        leftTopMenu={leftTopMenu}
-        rightTopMenu={rightTopMenu}
-        footerLinks={footerLinks}
-        contentData={contentData}
-        mainRef={mainRef}
-      />
-    );
-  }
-}
+  return (
+    <PageView
+      leftTopMenu={leftTopMenu}
+      rightTopMenu={rightTopMenu}
+      footerLinks={footerLinks}
+      contentData={contentData}
+      mainRef={mainRef}
+    />
+  );
+};
 
 Page.propTypes = {
   children: PropTypes.node,
@@ -63,3 +55,5 @@ Page.defaultProps = {
   children: null,
   mainRef: null
 };
+
+export default Page;

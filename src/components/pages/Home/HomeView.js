@@ -93,7 +93,7 @@ HomeView.defaultProps = {
   loading: false,
   error: false,
   mainData: null,
-  mainDataSelected: null,
+  mainDataSelected: [],
   showScrollButton: false
 };
 

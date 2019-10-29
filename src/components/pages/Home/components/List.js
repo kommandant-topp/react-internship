@@ -40,7 +40,11 @@ List.propTypes = {
   onDragOver: PropTypes.func.isRequired,
   onDragEnd: PropTypes.func.isRequired,
   mainData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  mainDataSelected: PropTypes.arrayOf(PropTypes.object).isRequired,
+  mainDataSelected: PropTypes.arrayOf(PropTypes.object),
+};
+
+List.defaultProps = {
+  mainDataSelected: []
 };
 
 export default List;
