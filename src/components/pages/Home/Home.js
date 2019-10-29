@@ -1,7 +1,32 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  useState, useEffect, useCallback, useRef 
+} from 'react';
+
 import withListData from '../../../hoc/withListData';
 import HomeView from './HomeView';
+
+function useEventListener(eventName, handler, element = window) {
+  const savedHandler = useRef();
+
+  useEffect(() => {
+    savedHandler.current = handler;
+  }, [handler]);
+
+  useEffect(
+    () => {
+      const isSupported = element && element.addEventListener;
+      if (!isSupported) return () => {};
+
+      const eventListener = (event) => savedHandler.current(event);
+      element.addEventListener(eventName, eventListener);
+
+      return () => {
+        element.removeEventListener(eventName, eventListener);
+      };
+    },
+    [eventName, element] // Re-run if eventName or element changes
+  );
+}
 
 const Home = (props) => {
   const [loading, setLoading] = useState(false);
@@ -15,7 +40,7 @@ const Home = (props) => {
   let indexDrag = 0;
   let dragList = [];
 
-  const handleKeyPress = useCallback( (e) => {
+  const handleKeyPress = useCallback((e) => {
     let num = 1 * e.key;
 
     if (Number.isNaN(num)
@@ -44,10 +69,9 @@ const Home = (props) => {
 
     const show = window.innerHeight < (mainRef.current.offsetTop - window.pageYOffset);
 
-    if (showScrollButton !== show){
+    if (showScrollButton !== show) {
       setShowScrollButton(show);
     }
-
   }, [props, showScrollButton]);
 
   const onDragStart = (e, index) => {
@@ -70,8 +94,6 @@ const Home = (props) => {
     );
 
     dragList.splice(index, 0, currentDraggedItem);
-
-
   };
 
   const onDragEnd = () => {
@@ -79,7 +101,7 @@ const Home = (props) => {
 
     currentDraggedItem = null;
     stopDraggedItem = null;
-    indexDrag = null
+    indexDrag = null;
   };
 
   const handleOnLoad = () => {
@@ -98,7 +120,6 @@ const Home = (props) => {
   useEventListener('scroll', handleScroll);
 
   useEffect(() => {
-
     const { loading: propLoading, error: propError, mainData: propMainData } = props;
 
     setLoading(propLoading);
@@ -124,43 +145,5 @@ const Home = (props) => {
   );
 };
 
-function useEventListener(eventName, handler, element = window){
-
-  const savedHandler = useRef();
-
-  useEffect(() => {
-    savedHandler.current = handler;
-  }, [handler]);
-
-  useEffect(
-      () => {
-        const isSupported = element && element.addEventListener;
-        if (!isSupported) return;
-
-        const eventListener = event => savedHandler.current(event);
-        element.addEventListener(eventName, eventListener);
-
-        return () => {
-          element.removeEventListener(eventName, eventListener);
-        };
-
-      },
-      [eventName, element] // Re-run if eventName or element changes
-  );
-}
-
-Home.propTypes = {
-  mainRef: PropTypes.objectOf(PropTypes.object),
-  loading: PropTypes.bool,
-  error: PropTypes.bool,
-  mainData: PropTypes.arrayOf(PropTypes.object)
-};
-
-Home.defaultProps = {
-  mainRef: null,
-  loading: false,
-  error: false,
-  mainData: null,
-};
 
 export default withListData(Home, process.env.REACT_APP_STARSHIPS_ENDPOINT);
